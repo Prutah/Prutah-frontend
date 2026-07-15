@@ -4,7 +4,7 @@
 // package (Soroban CLI `contract bindings typescript` output) and are
 // imported directly, e.g.:
 //
-//   import * as PolicyContract from "@tollgate/contracts-policy-client";
+//   import * as PolicyContract from "@prutah/contracts-policy-client";
 //
 // That package isn't available while this dashboard is scaffolded standalone,
 // so this module stands in for it with the same call shape the real client

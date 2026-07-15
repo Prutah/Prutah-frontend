@@ -8,7 +8,7 @@ import type { Endpoint } from "@/types";
 
 function snippetFor(endpoint: Pick<Endpoint, "path" | "price" | "asset">) {
   return `// seller-kit middleware
-app.use("${endpoint.path}", tollgate({
+app.use("${endpoint.path}", prutah({
   price: "${endpoint.price}",
   asset: "${endpoint.asset}",
 }));`;

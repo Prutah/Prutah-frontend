@@ -1,12 +1,12 @@
 # Prutah-frontend
 
-The web dashboard for Tollgate — the full x402 agent-payments stack on Stellar. One frontend, two views: a **seller view** for API developers monetizing endpoints (pricing, revenue, payment history) and a **payer view** for teams running AI agents (spending policies, live spend, audit trails). One org, one login, both sides of the x402 flow.
+The web dashboard for Prutah — the full x402 agent-payments stack on Stellar. One frontend, two views: a **seller view** for API developers monetizing endpoints (pricing, revenue, payment history) and a **payer view** for teams running AI agents (spending policies, live spend, audit trails). One org, one login, both sides of the x402 flow.
 
-Part of the Tollgate org. Sibling repos: `core` (shared x402 payment primitives) · `contracts` (Soroban policy engine) · `payer-sdk` · `seller-kit` · `backend` (facilitator + indexer, the API this dashboard consumes). This README is self-contained: everything needed to build this repo is below, including the exact backend API interface it consumes.
+Part of the Prutah org. Sibling repos: `core` (shared x402 payment primitives) · `contracts` (Soroban policy engine) · `payer-sdk` · `seller-kit` · `backend` (facilitator + indexer, the API this dashboard consumes). This README is self-contained: everything needed to build this repo is below, including the exact backend API interface it consumes.
 
 ## What This Repo Is
 
-Tollgate's primary users interact in code — agents pay through `payer-sdk`, APIs charge through `seller-kit`. The dashboard is where the humans behind them configure, monitor, and audit that activity. It is a control-and-monitoring surface, not the product itself — which shapes every design decision below: dense information display, zero onboarding friction for developers, and nothing that blocks the SDK flows.
+Prutah's primary users interact in code — agents pay through `payer-sdk`, APIs charge through `seller-kit`. The dashboard is where the humans behind them configure, monitor, and audit that activity. It is a control-and-monitoring surface, not the product itself — which shapes every design decision below: dense information display, zero onboarding friction for developers, and nothing that blocks the SDK flows.
 
 It is deliberately thin. All money movement happens on Stellar via the backend and contracts; all policy enforcement happens on-chain. The dashboard reads state, submits configuration, and never holds funds or signs agent payments. If the dashboard is down, payments and policies keep working.
 
@@ -96,7 +96,7 @@ GET    /v1/overview                     → combined home-page stats
 ## Design Decisions
 
 - **Read-heavy, write-light**: the dashboard's job is clarity, not workflow. Dense tables with real numbers beat wizards. Developers are the audience; respect that.
-- **Refusals are first-class data.** Most spend dashboards show what was spent; Tollgate's audit trail equally shows what the policy blocked and why — that's the evidence the policy engine works, and it's the screenshot that sells the project.
+- **Refusals are first-class data.** Most spend dashboards show what was spent; Prutah's audit trail equally shows what the policy blocked and why — that's the evidence the policy engine works, and it's the screenshot that sells the project.
 - **Both views, one nav.** Roles are capabilities, not modes: an org that only sells sees only seller surfaces; an org doing both gets both without switching accounts. No artificial "seller product vs payer product" wall.
 - **Static-deployable, self-hostable**: no SSR dependency; any org can host their own dashboard against their self-hosted backend.
 - **Testnet-first UX**: network selector is prominent, testnet data is visually watermarked, and nothing about the UI assumes mainnet — this project will live on testnet for months and the dashboard should feel first-class there.
