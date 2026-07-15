@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --color-brand-50: #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-200: #c7d2fe;
+  --color-brand-300: #a5b4fc;
+  --color-brand-400: #818cf8;
+  --color-brand-500: #6366f1;
+  --color-brand-600: #4f46e5;
+  --color-brand-700: #4338ca;
+  --color-brand-800: #3730a3;
+  --color-brand-900: #312e81;
+
+  --color-surface: #ffffff;
+  --color-surface-muted: #f8fafc;
+  --color-border: #e2e8f0;
+
+  --color-allowed: #16a34a;
+  --color-refused: #dc2626;
+  --color-pending: #d97706;
+}
+
+:root {
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-surface: #0f172a;
+    --color-surface-muted: #1e293b;
+    --color-border: #334155;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background-color: var(--color-surface-muted);
+}
+
+.font-tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Testnet watermark — applied to the app shell whenever VITE_STELLAR_NETWORK !== "mainnet" */
+.testnet-watermark {
+  position: relative;
+}
+
+.testnet-watermark::before {
+  content: "TESTNET";
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18vw;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: color-mix(in srgb, var(--color-brand-500) 6%, transparent);
+  pointer-events: none;
+  z-index: 0;
+}
